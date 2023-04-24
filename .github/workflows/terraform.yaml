@@ -53,7 +53,7 @@ jobs:
 
       - name: terraform plan status 
         if: steps.if.outcome == 'failure'
-        runs: exit 1 
+        run: exit 1 
 
       - name: terraform apply 
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'

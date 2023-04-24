@@ -6,7 +6,7 @@ on:
     - main 
     paths: 
     - app/**
-  pull requests: 
+  pull_request: 
     branches: 
     - master 
     - main 
@@ -21,16 +21,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-
     steps: 
     - uses: action/checkout@v3
 
     - name: build the docker images 
-      runs: |
-      docker build -t ${{ env.username }}/${{ env.image }}:v$GITHUB_RUN_NUMBER ./app
+      run: |
+        docker build -t ${{ env.username }}/${{ env.image }}:v$GITHUB_RUN_NUMBER ./app
       
     - name: Login to dockerhub
       run: docker login -u ${{ env.username }} -p ${{ secrets.DOCKERHUB_PW }}
