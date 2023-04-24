@@ -114,7 +114,7 @@ resource "aws_route_table_association" "frontend_b" {
  resource "aws_eip" "bml_eip" {
  vpc = var.accept_eip
  }
- resource "aws_nat_gateway" "" {
+ resource "aws_nat_gateway" "bml_ngw" {
  allocation_id = var.aws_eip
   subnet_id = var.pub_subnet_id_a
 }
