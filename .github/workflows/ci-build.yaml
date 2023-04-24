@@ -1,0 +1,41 @@
+name: build
+on:
+  push:
+    branches:
+    - master 
+    - main 
+    paths: 
+    - app/**
+  pull requests: 
+    branches: 
+    - master 
+    - main 
+    paths: 
+    - app/**
+
+env:
+  image: bml-frontend 
+  username: keelo3k
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps: 
+    - uses: action/checkout@v3
+
+    - name: build the docker images 
+      runs: |
+      docker build -t ${{ env.username }}/${{ env.image }}:v$GITHUB_RUN_NUMBER ./app
+      
+    - name: Login to dockerhub
+      run: docker login -u ${{ env.username }} -p ${{ secrets.DOCKERHUB_PW }}
+      
+    - name: Push docker image to dockerhub
+      if: github.ref == 'refs/heads/main'
+      run: |
+        docker push ${{ env.username }}/${{ env.image }}:v$GITHUB_RUN_NUMBER
