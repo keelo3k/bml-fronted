@@ -26,7 +26,7 @@ jobs:
 
     steps:
       - name: Checkout the repository 
-        uses: action/checkout@v3
+        uses: actions/checkout@v3
 
       - name: Setup Terraform with specified version on the runner 
         uses: hashicorp/setup-terraform@v2
