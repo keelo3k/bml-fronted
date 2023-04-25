@@ -1,14 +1,14 @@
 variable "ecr_name" {
-  type = string 
+  type    = string
   default = "bml_cluster"
 }
 
 variable "image_tag_mutability" {
-  type = string 
+  type    = string
   default = "MUTABLE"
 }
 
 variable "scan_on_push" {
-  type = string 
-  default = true 
+  type    = string
+  default = true
 }
