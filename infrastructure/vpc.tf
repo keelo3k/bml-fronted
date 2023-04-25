@@ -32,7 +32,7 @@ resource "aws_subnet" "bml_public_b" {
 }
 
 resource "aws_subnet" "bml_app_a" {
-  vpc_id                  =aws_vpc.bml.id
+  vpc_id                  = aws_vpc.bml.id
   cidr_block              = var.cidr_app_a
   map_public_ip_on_launch = var.map_public_ip_on_launch_false
   availability_zone       = var.az_c
