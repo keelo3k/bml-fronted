@@ -7,6 +7,11 @@ on:
       - main
     paths:
       - infrastructure/**
+  pull_request:
+    branches:
+      - main
+    paths:
+      - infrastructure/**
 
 env:
  TF_LOG: INFO
@@ -47,7 +52,6 @@ jobs:
 
       - name: terraform plan 
         id: plan
-        if: github.event_name == 'pull request'
         run: terraform plan -no-color -input=false 
         continue-on-error: true 
 
