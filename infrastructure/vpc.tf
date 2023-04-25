@@ -112,7 +112,7 @@ resource "aws_route_table_association" "frontend_b" {
 
 # nat gw
 resource "aws_eip" "bml_eip" {
-  vpc = aws_vpc.bml.id
+  vpc = "true"
 }
 resource "aws_nat_gateway" "bml_ngw" {
   allocation_id = aws_eip.bml_eip.id
@@ -120,7 +120,7 @@ resource "aws_nat_gateway" "bml_ngw" {
 }
 
 # VPC setup for NAT
-resource "aws_route_table" "ucl_defenders" {
+resource "aws_route_table" "bml_private_rtb" {
   vpc_id = aws_vpc.bml.id
 
   tags = {

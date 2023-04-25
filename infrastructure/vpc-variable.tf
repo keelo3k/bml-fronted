@@ -75,61 +75,50 @@ variable "cidr_db_b" {
 #subnet 
 variable "pub_subnet_id_a" {
   type    = string
-  default = "aws_subent.bml_public_a"
+  default = "aws_subent.bml_public_a.id"
 }
 
 variable "pub_subnet_id_b" {
   type    = string
-  default = "aws_subnet.bml_public_b"
+  default = "aws_subnet.bml_public_b.id"
 }
 
 variable "app_subnet_id_a" {
   type    = string
-  default = "aws_subnet.bml_app_a"
+  default = "aws_subnet.bml_app_a.id"
 }
 
 variable "app_subnet_id_b" {
   type    = string
-  default = "aws_subnet.bml_app_b"
+  default = "aws_subnet.bml_app_b.id"
 }
 
 variable "db_subnet_id_a" {
   type    = string
-  default = "aws_subnet.bml_db_a"
+  default = "aws_subnet.bml_db_a.id"
 }
 
 variable "db_subnet_id_b" {
   type    = string
-  default = "aws_subnet.bml_db_b"
+  default = "aws_subnet.bml_db_b.id"
 }
 
 #route table
 variable "public_rtb" {
   type    = string
-  default = "aws_route_table.bml_rtb_pub"
+  default = "aws_route_table.bml_private_rtb.id"
 }
 
 variable "private_rtb" {
   type    = string
-  default = "aws_route_table.bml_rtb_priv"
-}
-
-#route table assosation 
-variable "public_rtb_association" {
-  type    = string
-  default = ""
-}
-
-variable "private_rtb_association" {
-  type    = string
-  default = ""
+  default = "aws_route_table.bml_private_rtb.id"
 }
 
 
 #IGW
 variable "aws_internet_gateway_id" {
   type    = string
-  default = "aws_internet_gateway.bml_igw"
+  default = "aws_internet_gateway.bml_igw.id"
 }
 
 variable "cidr_igw" {
