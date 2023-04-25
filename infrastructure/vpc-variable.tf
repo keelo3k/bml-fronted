@@ -106,12 +106,12 @@ variable "db_subnet_id_b" {
 #route table
 variable "public_rtb" {
   type    = string
-  default = "aws_route_table.bml_private_rtb.id"
+  default = "aws_route_table.frontend.id"
 }
 
 variable "private_rtb" {
   type    = string
-  default = "aws_route_table.bml_private_rtb.id"
+  default = "aws_route_table.frontend_b.id"
 }
 
 
@@ -139,3 +139,4 @@ variable "ngw" {
 }
 
 
+#
