@@ -137,3 +137,6 @@ variable "ngw" {
   type    = string
   default = "bml-ngw"
 }
+
+
+#
