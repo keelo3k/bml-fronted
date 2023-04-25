@@ -78,7 +78,7 @@ resource "aws_subnet" "bml_db_b" {
 
 # internet gateway 
 resource "aws_internet_gateway" "bml_igw" {
-  vpc_id = aaws_vpc.bml.id
+  vpc_id = aws_vpc.bml.id
 
   tags = {
     Name = "bml_igw"
