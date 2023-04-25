@@ -1,9 +1,4 @@
 #VPC and configurations
-variable "vpc_id" {
-  type    = string
-  default = "bml"
-}
-
 variable "cidr_vpc" {
   type    = string
   default = "10.0.0.0/16"
@@ -146,11 +141,6 @@ variable "cidr_igw" {
 variable "accept_eip" {
   type    = string
   default = "true"
-}
-
-variable "aws_eip" {
-  type    = string
-  default = "bml_eip"
 }
 
 

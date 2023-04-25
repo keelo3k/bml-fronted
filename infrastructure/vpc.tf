@@ -10,7 +10,7 @@ resource "aws_vpc" "bml" {
 }
 
 resource "aws_subnet" "bml_public_a" {
-  vpc_id                  = var.vpc_id
+  vpc_id                  = aws_vpc.bml.id
   cidr_block              = var.cidr_pub_a
   map_public_ip_on_launch = var.map_public_ip_on_launch
   availability_zone       = var.az_a
@@ -21,7 +21,7 @@ resource "aws_subnet" "bml_public_a" {
 }
 
 resource "aws_subnet" "bml_public_b" {
-  vpc_id                  = var.vpc_id
+  vpc_id                  = aws_vpc.bml.id
   cidr_block              = var.cidr_pub_b
   map_public_ip_on_launch = var.map_public_ip_on_launch
   availability_zone       = var.az_b
@@ -32,7 +32,7 @@ resource "aws_subnet" "bml_public_b" {
 }
 
 resource "aws_subnet" "bml_app_a" {
-  vpc_id                  = var.vpc_id
+  vpc_id                  =aws_vpc.bml.id
   cidr_block              = var.cidr_app_a
   map_public_ip_on_launch = var.map_public_ip_on_launch_false
   availability_zone       = var.az_c
@@ -43,7 +43,7 @@ resource "aws_subnet" "bml_app_a" {
 }
 
 resource "aws_subnet" "bml_app_b" {
-  vpc_id                  = var.vpc_id
+  vpc_id                  = aws_vpc.bml.id
   cidr_block              = var.cidr_app_b
   map_public_ip_on_launch = var.map_public_ip_on_launch_false
   availability_zone       = var.az_a
@@ -54,7 +54,7 @@ resource "aws_subnet" "bml_app_b" {
 }
 
 resource "aws_subnet" "bml_db_a" {
-  vpc_id                  = var.vpc_id
+  vpc_id                  = aws_vpc.bml.id
   cidr_block              = var.cidr_db_a
   map_public_ip_on_launch = var.map_public_ip_on_launch_false
   availability_zone       = var.az_b
@@ -65,7 +65,7 @@ resource "aws_subnet" "bml_db_a" {
 }
 
 resource "aws_subnet" "bml_db_b" {
-  vpc_id                  = var.vpc_id
+  vpc_id                  = aws_vpc.bml.id
   cidr_block              = var.cidr_db_b
   map_public_ip_on_launch = var.map_public_ip_on_launch_false
   availability_zone       = var.az_c
@@ -78,7 +78,7 @@ resource "aws_subnet" "bml_db_b" {
 
 # internet gateway 
 resource "aws_internet_gateway" "bml_igw" {
-  vpc_id = var.vpc_id
+  vpc_id = aaws_vpc.bml.id
 
   tags = {
     Name = "bml_igw"
@@ -88,7 +88,7 @@ resource "aws_internet_gateway" "bml_igw" {
 
 # route table and assostation 
 resource "aws_route_table" "public_rtb" {
-  vpc_id = var.vpc_id
+  vpc_id = aws_vpc.bml.id
 
   route {
     cidr_block = var.cidr_igw
@@ -112,16 +112,16 @@ resource "aws_route_table_association" "frontend_b" {
 
 # nat gw
 resource "aws_eip" "bml_eip" {
-  vpc = var.accept_eip
+  vpc = aws_vpc.bml.id
 }
 resource "aws_nat_gateway" "bml_ngw" {
-  allocation_id = var.aws_eip
+  allocation_id = aws_eip.bml_eip.id
   subnet_id     = var.pub_subnet_id_a
 }
 
 # VPC setup for NAT
 resource "aws_route_table" "ucl_defenders" {
-  vpc_id = var.vpc_id
+  vpc_id = aws_vpc.bml.id
 
   tags = {
     Name = "private_rtb"
