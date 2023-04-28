@@ -91,8 +91,8 @@ resource "aws_route_table" "public_rtb" {
   vpc_id = aws_vpc.bml.id
 
   route {
-    cidr_block = var.cidr_igw
-    gateway_id = var.aws_internet_gateway_id
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.bml_igw.id
   }
 
   tags = {
@@ -101,13 +101,13 @@ resource "aws_route_table" "public_rtb" {
 }
 
 resource "aws_route_table_association" "frontend" {
-  subnet_id      = var.pub_subnet_id_a
-  route_table_id = var.public_rtb
+  subnet_id      = aws_subnet.bml_public_a.id
+  route_table_id = aws_route_table.public_rtb.id
 }
 
 resource "aws_route_table_association" "frontend_b" {
-  subnet_id      = var.pub_subnet_id_b
-  route_table_id = var.public_rtb
+  subnet_id      = aws_subnet.bml_public_a.id
+  route_table_id = aws_route_table.public_rtb.id
 }
 
 # nat gw
@@ -116,7 +116,7 @@ resource "aws_eip" "bml_eip" {
 }
 resource "aws_nat_gateway" "bml_ngw" {
   allocation_id = aws_eip.bml_eip.id
-  subnet_id     = var.pub_subnet_id_a
+  subnet_id     = aws_subnet.bml_public_a.id
 }
 
 # VPC setup for NAT
@@ -130,22 +130,23 @@ resource "aws_route_table" "bml_private_rtb" {
 
 # route associations private
 resource "aws_route_table_association" "backend_app_a" {
-  subnet_id      = var.app_subnet_id_a
-  route_table_id = var.private_rtb
+  subnet_id      = aws_subnet.bml_app_a.id
+  route_table_id = aws_route_table.bml_private_rtb.id
 }
 
 resource "aws_route_table_association" "backend_app_b" {
-  subnet_id      = var.app_subnet_id_b
-  route_table_id = var.private_rtb
+  subnet_id      = aws_subnet.bml_app_b.id
+  route_table_id = aws_route_table.bml_private_rtb.id 
 }
 
 resource "aws_route_table_association" "backend_db_a" {
-  subnet_id      = var.db_subnet_id_a
-  route_table_id = var.private_rtb
+  subnet_id      = aws_subnet.bml_db_a.id
+  route_table_id = aws_route_table.bml_private_rtb.id 
 }
 
 resource "aws_route_table_association" "backend_db_b" {
-  subnet_id      = var.db_subnet_id_b
-  route_table_id = var.private_rtb
+  subnet_id      = aws_subnet.bml_db_b.id
+  route_table_id = aws_route_table.bml_private_rtb.id
 }
+
 
