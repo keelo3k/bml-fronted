@@ -1,9 +1,9 @@
-resource "aws_ecr_repository" "bml_cluster" {
-  name                 = var.ecr_name
-  image_tag_mutability = var.image_tag_mutability
+# resource "aws_ecr_repository" "bml_cluster" {
+#   name                 = var.ecr_name
+#   image_tag_mutability = var.image_tag_mutability
 
-  image_scanning_configuration {
-    scan_on_push = var.scan_on_push
-  }
-}
+#   image_scanning_configuration {
+#     scan_on_push = var.scan_on_push
+#   }
+# }
 

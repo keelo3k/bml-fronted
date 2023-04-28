@@ -22,12 +22,12 @@ variable "az_a" {
 
 variable "az_b" {
   type    = string
-  default = "us-west-1c"
+  default = "us-west-2b"
 }
 
 variable "az_c" {
   type    = string
-  default = "us-west-1a"
+  default = "us-west-2c"
 }
 
 #subnet configurations (map public ip)
