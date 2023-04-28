@@ -17,7 +17,7 @@ variable "enable_dns" {
 #AZs
 variable "az_a" {
   type    = string
-  default = "us-west-1a"
+  default = "us-west-2a"
 }
 
 variable "az_b" {
