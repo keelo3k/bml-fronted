@@ -136,12 +136,12 @@ resource "aws_route_table_association" "backend_app_a" {
 
 resource "aws_route_table_association" "backend_app_b" {
   subnet_id      = aws_subnet.bml_app_b.id
-  route_table_id = aws_route_table.bml_private_rtb.id 
+  route_table_id = aws_route_table.bml_private_rtb.id
 }
 
 resource "aws_route_table_association" "backend_db_a" {
   subnet_id      = aws_subnet.bml_db_a.id
-  route_table_id = aws_route_table.bml_private_rtb.id 
+  route_table_id = aws_route_table.bml_private_rtb.id
 }
 
 resource "aws_route_table_association" "backend_db_b" {
