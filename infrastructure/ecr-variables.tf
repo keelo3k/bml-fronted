@@ -1,6 +1,6 @@
 variable "ecr_name" {
   type    = string
-  default = "bml_cluster"
+  default = "motion_cluster"
 }
 
 variable "image_tag_mutability" {
